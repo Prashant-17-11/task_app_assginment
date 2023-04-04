@@ -24,13 +24,13 @@ Similarly, browse to server folder and install node modules for server side.\
 
 ## To run the application
 
-To start the server (backend).
+To start the server (backend). (localhost:5000)
 
 ### `cd server`
 
 ### `npm run dev`
 
-To start the client (frontend).
+To start the client (frontend). (localhost: 3000)
 
 ### `cd client`
 
