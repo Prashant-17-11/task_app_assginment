@@ -44,6 +44,19 @@ router.post(
   }
 );
 
+// @route   GET api/task/:id
+// @desc    Get a task
+// @access  Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    res.json(task);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   PUT api/task/:id
 // @desc    Update a task
 // @access  Private
@@ -96,6 +109,9 @@ router.put(
       };
 
       if (task.user.toString() === req.user.id) {
+        task.updatePrivilegesTo = task.updatePrivilegesTo.filter(
+          (obj) => obj.user.toString() !== req.params.userId.toString()
+        ); // prevents duplicate users
         task.updatePrivilegesTo = [privilegedUser, ...task.updatePrivilegesTo];
       }
 

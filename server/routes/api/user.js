@@ -6,11 +6,25 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../../models/User");
+const auth = require("../../middleware/auth");
 
 // @route   GET api/user
 // @desc    Test route
 // @access  Public
 router.get("/", (req, res) => res.send("User route"));
+
+// @route   GET api/user/users
+// @desc    Get a list of all users
+// @access  Private
+router.get("/users", auth, async (req, res) => {
+  try {
+    const users = await User.find().select("_id name avatar");
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 // @route   POST api/user
 // @desc    Register route
@@ -53,8 +67,6 @@ router.post(
           id: user.id,
         },
       };
-
-      console.log(payload);
 
       jwt.sign(
         payload,
