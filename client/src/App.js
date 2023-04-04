@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Homepage from "./components/Homepage";
-import Landing from "./components/Landing";
 import PrivateRoute from "./utility/PrivateRoute";
 import UpdateTask from "./components/UpdateTask";
 import CreateTask from "./components/CreateTask";

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import "../styles/Login.css";
 
-const Signup = ({ register, isAuthenticated, loading }) => {
+const Signup = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,7 +29,7 @@ const Signup = ({ register, isAuthenticated, loading }) => {
     }
   };
 
-  if (isAuthenticated && !loading) {
+  if (isAuthenticated) {
     return <Navigate to='/home' />;
   }
 
@@ -115,7 +115,7 @@ Signup.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading,
+  loading: state.task.loading,
 });
 
 export default connect(mapStateToProps, { register })(Signup);

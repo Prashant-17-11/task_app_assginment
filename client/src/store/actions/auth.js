@@ -61,6 +61,7 @@ export const login = (email, password) => async (dispatch) => {
   } catch (err) {
     const errors = err.response.data.errors;
     console.log(errors);
+    alert("Invalid Credentials!!");
     dispatch({
       type: LOGIN_FAIL,
     });

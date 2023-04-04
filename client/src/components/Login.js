@@ -5,7 +5,7 @@ import { login } from "../store/actions/auth";
 import PropTypes from "prop-types";
 import "../styles/Login.css";
 
-const Login = ({ login, isAuthenticated, loading }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,7 +22,7 @@ const Login = ({ login, isAuthenticated, loading }) => {
   };
 
   // Redirect if Logged in
-  if (isAuthenticated && !loading) {
+  if (isAuthenticated) {
     return <Navigate to='/home' />;
   }
 
@@ -73,7 +73,6 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { login })(Login);

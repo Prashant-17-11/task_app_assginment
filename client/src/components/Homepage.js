@@ -15,9 +15,7 @@ const Homepage = ({ getTasks, tasks }) => {
         Welcome to Task Board - where teamwork and productivity meet!
       </p>
       <div className='tasks'>
-        {tasks !== null
-          ? tasks.map((task) => <Task key={task._id} task={task} />)
-          : ""}
+        {tasks ? tasks.map((task) => <Task key={task._id} task={task} />) : ""}
       </div>
     </section>
   );
