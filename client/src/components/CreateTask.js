@@ -3,6 +3,7 @@ import { addTask } from "../store/actions/task";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 const CreateTask = ({ addTask }) => {
   const [formData, setFormData] = useState({
@@ -23,13 +24,13 @@ const CreateTask = ({ addTask }) => {
   };
 
   return (
-    <section className='container'>
-      <h1 className='large text-primary'>Create Task</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Add your tasks
-      </p>
+    <section className='form_container'>
+      <div className='top'>
+        <h1 className='heading'>Create Task</h1>
+        <p className='text'>Add your tasks</p>
+      </div>
       <form className='form' onSubmit={(e) => onSubmit(e)}>
-        <div className='form-group'>
+        <div className='form_field'>
           <input
             type='text'
             placeholder='Add Task Description'
@@ -39,10 +40,14 @@ const CreateTask = ({ addTask }) => {
           />
         </div>
 
-        <input type='submit' className='btn btn-primary' value='Create Task' />
+        <input type='submit' className='form_button' value='Create Task' />
+        <p className='text bottom'>
+          Get Organized and Accomplish More with Task Board!
+        </p>
       </form>
-      <p className='my-1'>Get Organized and Accomplish More with Task Board!</p>
-      <Link to='/home'>Return</Link>
+      <Link to='/home' className='return_button'>
+        Return
+      </Link>
     </section>
   );
 };

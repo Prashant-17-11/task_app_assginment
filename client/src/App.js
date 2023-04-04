@@ -6,6 +6,8 @@ import Signup from "./components/Signup";
 import Homepage from "./components/Homepage";
 import Landing from "./components/Landing";
 import PrivateRoute from "./utility/PrivateRoute";
+import UpdateTask from "./components/UpdateTask";
+import CreateTask from "./components/CreateTask";
 
 // Redux store
 import { Provider } from "react-redux";
@@ -13,8 +15,6 @@ import store from "./store";
 import { loadUser } from "./store/actions/auth";
 import setAuthToken from "./utility/setAuthToken";
 import { LOGOUT } from "./store/actions/types";
-import UpdateTask from "./components/UpdateTask";
-import CreateTask from "./components/CreateTask";
 
 const App = () => {
   useEffect(() => {
@@ -32,7 +32,7 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path='/' element={<Landing />} />
+          <Route exact path='/' element={<Login />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Signup />} />
           <Route element={<PrivateRoute />}>

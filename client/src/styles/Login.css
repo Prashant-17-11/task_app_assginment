@@ -1,0 +1,135 @@
+.form_container {
+  width: 450px;
+  margin: 3rem auto;
+}
+
+.top {
+  background-color: #212529;
+  color: #ffffff;
+  padding: 0 1rem;
+  height: 90px;
+  border-radius: 7px 7px 0 0;
+}
+
+.heading {
+  font-size: 2.5rem;
+  margin: 3px 4px;
+}
+
+.text {
+  margin: 2px;
+  font-size: 1rem;
+}
+
+.form {
+  border: 1px solid #212529;
+  padding: auto;
+}
+
+.form_field {
+  margin: 1rem;
+}
+
+.form_field input {
+  width: 98%;
+  height: 40px;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.form_button {
+  width: 90%;
+  margin-top: 2rem;
+  margin-left: 5%;
+  height: 3rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  background-color: #212529;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form_button:hover {
+  color: #0d6efe;
+}
+
+.highlight {
+  color: #0d6efe;
+}
+
+.bottom {
+  margin: 0.5rem 24%;
+  text-align: center;
+}
+
+.return_button {
+  display: block;
+  width: 75%;
+  margin-top: 1.5rem;
+  margin-left: 12.5%;
+  padding-top: 5px;
+  height: 3rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  background-color: #212529;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.return_button:hover {
+  color: #0d6efe;
+}
+
+@media screen and (max-width: 500px) {
+  .form_container {
+    width: 375px;
+    margin: 2rem auto;
+  }
+
+  .top {
+    height: 80px;
+  }
+
+  .heading {
+    font-size: 2.25rem;
+  }
+  .bottom {
+    margin: 0.5rem 18%;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .form_container {
+    width: 300px;
+    margin: 1rem auto;
+  }
+
+  .top {
+    height: 65px;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .text {
+    font-size: 0.75rem;
+  }
+
+  .form_field {
+    margin: 1rem 0.5rem;
+  }
+
+  .form_field input {
+    width: 97%;
+  }
+
+  .form_button {
+    margin-top: 1rem;
+  }
+}

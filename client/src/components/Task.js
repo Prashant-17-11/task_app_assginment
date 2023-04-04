@@ -4,41 +4,60 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteTask, getCurrentTask } from "../store/actions/task";
 
+// profile images
+import dog from "../images/dog.png";
+import cat from "../images/cat.png";
+import elephant from "../images/elephant.png";
+import fox from "../images/fox.png";
+import panda from "../images/panda.png";
+
+const avatarImages = {
+  dog: dog,
+  cat: cat,
+  elephant: elephant,
+  fox: fox,
+  panda: panda,
+};
+
 const Task = ({
   auth,
-  task: { _id, user, text, name, avatar, updatePrivilegesTo },
+  task: { _id = "", user, text, name, avatar },
   deleteTask,
   getCurrentTask,
 }) => {
-  const userHasPrivilege = () => {
-    const currentUser = auth.user._id;
-    updatePrivilegesTo.map(({ user }) => (user === currentUser ? true : ""));
-  };
   const navigate = useNavigate();
+
   return (
-    <div>
-      <p>{text}</p>
-      <p>{name}</p>
-      <p>{avatar}</p>
-      {auth.user._id === user ? (
-        <button
-          onClick={() => {
-            getCurrentTask(_id);
-            navigate("/updateTask");
-          }}
-        >
-          Update Task
-        </button>
-      ) : (
-        ""
-      )}
-      <p>
-        {auth.user._id === user || userHasPrivilege() ? (
-          <button onClick={() => deleteTask(_id)}>Delete Task</button>
+    <div className='task'>
+      <div className='task_top'>
+        <p className='task_description'>{text}</p>
+        <div>
+          <img src={avatarImages[avatar]} className='avatar' alt='avatar' />
+          <p className='user'>{name}</p>
+        </div>
+      </div>
+      <div className='task_bottom'>
+        {auth.user._id === user && _id !== undefined ? (
+          <button
+            onClick={() => {
+              getCurrentTask(_id);
+              navigate("/updateTask");
+            }}
+            className='task_button'
+          >
+            Update Task
+          </button>
         ) : (
           ""
         )}
-      </p>
+        {auth.user._id === user && _id !== undefined ? (
+          <button onClick={() => deleteTask(_id)} className='task_button'>
+            Delete Task
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

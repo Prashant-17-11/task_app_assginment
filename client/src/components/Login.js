@@ -3,8 +3,9 @@ import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../store/actions/auth";
 import PropTypes from "prop-types";
+import "../styles/Login.css";
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, loading }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,24 +16,24 @@ const Login = ({ login, isAuthenticated }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
 
   // Redirect if Logged in
-  if (isAuthenticated) {
+  if (isAuthenticated && !loading) {
     return <Navigate to='/home' />;
   }
 
   return (
-    <section className='container'>
-      <h1 className='large text-primary'>Sign In</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Sign Into Your Account
-      </p>
+    <section className='form_container'>
+      <div className='top'>
+        <h1 className='heading'>Sign In</h1>
+        <p className='text'>Sign Into Your Account</p>
+      </div>
       <form className='form' onSubmit={(e) => onSubmit(e)}>
-        <div className='form-group'>
+        <div className='form_field'>
           <input
             type='email'
             placeholder='Email Address'
@@ -42,7 +43,7 @@ const Login = ({ login, isAuthenticated }) => {
             required
           />
         </div>
-        <div className='form-group'>
+        <div className='form_field'>
           <input
             type='password'
             placeholder='Password'
@@ -52,11 +53,14 @@ const Login = ({ login, isAuthenticated }) => {
             minLength='6'
           />
         </div>
-        <input type='submit' className='btn btn-primary' value='Login' />
+        <input type='submit' className='form_button' value='Login' />
+        <p className='text bottom'>
+          Don't have an account?{" "}
+          <Link to='/register' className='highlight'>
+            Sign Up
+          </Link>
+        </p>
       </form>
-      <p className='my-1'>
-        Don't have an account? <Link to='/register'>Sign Up</Link>
-      </p>
     </section>
   );
 };
@@ -64,10 +68,12 @@ const Login = ({ login, isAuthenticated }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { login })(Login);

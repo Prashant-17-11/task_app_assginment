@@ -7,8 +7,8 @@ import {
   TASK_ERROR,
   GET_TASK,
   CLEAR_TASK,
-  ADD_PRIVILEGED_USER,
-  CLEAR_ALL,
+  // ADD_PRIVILEGED_USER,
+  // CLEAR_ALL,
 } from "./types";
 
 // Get all tasks
@@ -92,26 +92,26 @@ export const updateTask = (taskId, formData) => async (dispatch) => {
 };
 
 // Add users who are allowed update access to a task
-export const addPrivilegedUser = (taskId, userId) => async (dispatch) => {
-  try {
-    const res = await api.put(`/task/updatePrivilegesTo/${taskId}/${userId}`);
-    dispatch({
-      type: ADD_PRIVILEGED_USER,
-      payload: res.data,
-    });
-    dispatch({
-      type: CLEAR_ALL,
-    });
-  } catch (err) {
-    dispatch({
-      type: TASK_ERROR,
-      payload: {
-        msg: err.response.statusText,
-        status: err.response.status,
-      },
-    });
-  }
-};
+// export const addPrivilegedUser = (taskId, userId) => async (dispatch) => {
+//   try {
+//     const res = await api.put(`/task/updatePrivilegesTo/${taskId}/${userId}`);
+//     dispatch({
+//       type: ADD_PRIVILEGED_USER,
+//       payload: res.data,
+//     });
+//     dispatch({
+//       type: CLEAR_ALL,
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: TASK_ERROR,
+//       payload: {
+//         msg: err.response.statusText,
+//         status: err.response.status,
+//       },
+//     });
+//   }
+// };
 
 // Delete a task
 export const deleteTask = (taskId) => async (dispatch) => {
